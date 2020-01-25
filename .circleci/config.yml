@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  build:
+    machine:
+      image: circleci/classic:edge
+    working_directory: ~/repo
+    branches:
+      ignore: master
+    steps:
+      - checkout
+      - run:
+          name: install docker-compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run:
+          name: docker-compose up
+          command: |
+            set -x
+            docker-compose up -d
+      - run:
+          name: test
+          command: docker-compose exec app go test -v main_test.go main.go
+      - run:
+          name: docker-compose down
+          command: docker-compose down
