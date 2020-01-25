@@ -18,7 +18,13 @@ jobs:
             set -x
             docker-compose up -d
       - run:
-          name: test
+          name: create table
+          command: docker-compose exec app go run migration/main.go
+      - run:
+          name: insert record
+          command: docker-compose exec app go run fixture/main.go
+      - run:
+          name: do test
           command: docker-compose exec app go test -v main_test.go main.go
       - run:
           name: docker-compose down
