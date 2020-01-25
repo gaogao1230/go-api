@@ -4,8 +4,6 @@ jobs:
     machine:
       image: circleci/classic:edge
     working_directory: ~/repo
-    branches:
-      ignore: master
     steps:
       - checkout
       - run:
