@@ -15,6 +15,7 @@ func Test_Main(t *testing.T) {
 	if err != nil {
 		panic(err.Error())
 	}
+	
 	// make db scheme
 	db.AutoMigrate(&model.User{})
 	// insert test record
