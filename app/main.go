@@ -2,11 +2,12 @@ package main
 
 import (
 	"app/model"
+	"net/http"
+	"strconv"
+
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"net/http"
-	"strconv"
 )
 
 func getDB() *gorm.DB {
