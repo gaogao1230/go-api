@@ -19,7 +19,7 @@ services:
       context: app/
     volumes:
       - ./app/:/go/src/app
-    command: realize start --run --no-config # DEBUG
+    command: fresh
     restart: always
     ports:
       - "8080:8080"
